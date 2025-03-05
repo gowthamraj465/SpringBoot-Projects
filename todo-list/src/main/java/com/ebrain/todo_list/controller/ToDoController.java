@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ebrain.todo_list.entity.ToDoList;
@@ -31,6 +32,17 @@ public class ToDoController {
     @Operation(summary = "Get All Tasks", description = "Retrieve all tasks")
 	public List<ToDoList> getAllToDos(){
 		return service.getAllToDos();
+	}
+	
+	@GetMapping("/filter")
+	
+	public List<ToDoList> filterToDoList(@RequestParam String title , @RequestParam String description , @RequestParam String status){
+		return service.filterToDoList(title,description,status);
+	}
+	
+	@GetMapping("/search")
+	public List<ToDoList> searchToDoList(@RequestParam(required = false) String searchKey){
+		return service.searchToDoList(searchKey);
 	}
 	
 	@GetMapping("get/{id}")

@@ -1,5 +1,6 @@
 package com.ebrain.todo_list.service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,4 +48,24 @@ public class ToDoService {
 		
 	}
 
+	public List<ToDoList> filterToDoList(String title, String description, String status) {
+		if(title == null || title.isEmpty() 
+				&& description == null || description.isEmpty() 
+				&& status == null || status.isEmpty())
+		{
+		
+			return Collections.emptyList();
+			
+		}
+		return repository.filterToDoList(title,description,status);
+		
+	}
+
+	public List<ToDoList> searchToDoList(String searchKey){
+		if(searchKey == null || searchKey.isEmpty()) {
+			return Collections.emptyList();
+		}
+		return repository.searchByKey(searchKey);
+		
+	}
 }
