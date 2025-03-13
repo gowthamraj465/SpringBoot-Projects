@@ -36,12 +36,15 @@ public class ToDoController {
 	
 	@GetMapping("/filter")
 	
-	public List<ToDoList> filterToDoList(@RequestParam String title , @RequestParam String description , @RequestParam String status){
+	public List<ToDoList> filterToDoList(@RequestParam(required = false) String title , 
+			                             @RequestParam(required = false) String description , 
+			                             @RequestParam(required =false)   String status)
+	{
 		return service.filterToDoList(title,description,status);
 	}
 	
 	@GetMapping("/search")
-	public List<ToDoList> searchToDoList(@RequestParam(required = false) String searchKey){
+	public List<ToDoList> searchToDoList( @RequestParam(required = false) String searchKey){
 		return service.searchToDoList(searchKey);
 	}
 	
